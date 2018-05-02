@@ -27,10 +27,6 @@ class hgtvScraper(DirectScraper):
 	base_url = 'http://www.hgtv.com'
 	referrer = 'http://www.hgtv.com'
 	
-	settings_definition = """<setting label="{NAME}" type="lsep" />
-		<setting default="false" id="{SERVICE}_enable" type="bool" label="Enable {NAME}" visible="true"/>
-	"""
-	
 	def search_shows(self, args):
 		results = []
 		html = self.request('/shows/full-episodes', cache_limit=EXPIRE_TIMES.DAY)

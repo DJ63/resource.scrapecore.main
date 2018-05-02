@@ -46,9 +46,9 @@ class exampleScraper(DirectScraper):
 	base_url = 'http://www.exampletv.com'
 	referrer = 'http://www.exampletv.com'
 	
-	settings_definition = """<setting label="{NAME}" type="lsep" />
-		<setting default="false" id="{SERVICE}_enable" type="bool" label="Enable {NAME}" visible="true"/>
-	"""
+	settings_definition = ['<setting label="{NAME}" type="lsep" />',
+		'<setting default="false" id="{SERVICE}_enable" type="bool" label="Enable {NAME}" visible="true" />'
+	]
 	
 	def search_shows(self, args):
 		results = []

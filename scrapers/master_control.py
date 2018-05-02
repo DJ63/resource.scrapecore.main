@@ -25,11 +25,12 @@ except: pass
 class master_controlScraper(DirectScraper):
 	service='master_control'
 	name='Master Control'
-	settings_definition = """
-		<setting label="Master Control" type="lsep" />
-		<setting default="false" id="master_control_enable" type="bool" label="Enable Master Control" visible="System.HasAddon(master.control)" enabled="System.HasAddon(master.control)" />
-		<setting label="Requires Master Control to be enabled" type="text" enable="false" visible="!System.HasAddon(master.control)" />
-	"""
+	
+	settings_definition = [
+		'<setting label="Master Control" type="lsep" />',
+		'<setting default="false" id="master_control_enable" type="bool" label="Enable Master Control" visible="System.HasAddon(master.control)" enabled="System.HasAddon(master.control)" />',
+		'<setting label="Requires Master Control to be enabled" type="text" enable="false" visible="!System.HasAddon(master.control)" />'
+	]
 	
 	def search_shows(self, args):
 		results = []
@@ -46,8 +47,6 @@ class master_controlScraper(DirectScraper):
 		for f in files['files']:
 			result = {"title": f['filename'], "raw_url": master_control.get_cached_url(f['hashid']), "service": self.service, "host": self.name, "size": f['size'], "extension": self.get_file_type(f['filename']), "quality": QUALITY.LOCAL}
 			results.append(result)
-		results = self.verify_results(self.process_results, results)
-		return results
 		results = self.verify_results(self.process_results, results)
 		return results
 		

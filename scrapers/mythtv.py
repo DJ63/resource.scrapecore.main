@@ -24,12 +24,11 @@ class mythtvScraper(DirectScraper):
 	service='mythtv'
 	name='MythTV'
 
-	settings_definition = """
-		<setting label="MythTV" type="lsep" />
-		<setting default="false" id="mythtv_enable" type="bool" label="Enable MythTV" visible="System.HasAddon(pvr.mythtv)" enabled="System.HasAddon(pvr.mythtv)" />
-		<setting label="Requires PVR.MythTV to be enabled" type="text" enable="false" visible="!System.HasAddon(pvr.mythtv)" />
-
-	"""
+	settings_definition = [
+		'<setting label="MythTV" type="lsep" />',
+		'<setting default="false" id="mythtv_enable" type="bool" label="Enable MythTV" visible="System.HasAddon(pvr.mythtv)" enabled="System.HasAddon(pvr.mythtv)" />',
+		'<setting label="Requires PVR.MythTV to be enabled" type="text" enable="false" visible="!System.HasAddon(pvr.mythtv)" />',
+	]
 	
 	def search_shows(self, args):
 		results = []
