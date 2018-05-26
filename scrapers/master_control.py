@@ -15,10 +15,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *'''
 
-import re
 from commoncore import kodi
 from scrapecore.scrapers.common import DirectScraper, QUALITY
-try:
+try: 
 	from mastercontrol import api as master_control
 except: pass
 
@@ -36,7 +35,7 @@ class master_controlScraper(DirectScraper):
 		results = []
 		files = master_control.search_files('tvshow', args['trakt_id'], title=args['title'], season=args['season'], episode=args['episode'], match_title=True)
 		for f in files['files']:
-			result = {"title": f['filename'], "raw_url": master_control.get_cached_url(f['hashid']), "service": self.service, "host": self.name, "size": f['size'], "extension": self.get_file_type(f['filename']), "quality": QUALITY.LOCAL}
+			result = {"title": f['filename'], "raw_url": master_control.get_cached_url(f['hashid']), "service": self.service, "host": '', "size": f['size'], "extension": self.get_file_type(f['filename']), "quality": QUALITY.LOCAL}
 			results.append(result)
 		results = self.verify_results(self.process_results, results)
 		return results
@@ -45,7 +44,7 @@ class master_controlScraper(DirectScraper):
 		results = []
 		files = master_control.search_files('movie', args['trakt_id'], year=args['year'], match_title=True)
 		for f in files['files']:
-			result = {"title": f['filename'], "raw_url": master_control.get_cached_url(f['hashid']), "service": self.service, "host": self.name, "size": f['size'], "extension": self.get_file_type(f['filename']), "quality": QUALITY.LOCAL}
+			result = {"title": f['filename'], "raw_url": master_control.get_cached_url(f['hashid']), "service": self.service, "host": '', "size": f['size'], "extension": self.get_file_type(f['filename']), "quality": QUALITY.LOCAL}
 			results.append(result)
 		results = self.verify_results(self.process_results, results)
 		return results

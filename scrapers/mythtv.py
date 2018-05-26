@@ -36,8 +36,7 @@ class mythtvScraper(DirectScraper):
 		if result:
 			media = {
 				"title": "%s %sx%s" % (args['title'], args['season'], args['episode']),
-				"host": self.name,
-				"host_icon": '',
+				"host": '',
 				"raw_url": result['url'],
 				"service": self.service,
 				"size": result['size'],
@@ -56,7 +55,6 @@ class mythtvScraper(DirectScraper):
 			media = {
 				"title": "%s (%s)" % (args['title'], args['year']),
 				"host": self.name,
-				"host_icon": '',
 				"raw_url": result['url'],
 				"service": self.service,
 				"size": result['size'],

@@ -16,16 +16,17 @@
 *'''
 
 import re
-import json
 from commoncore import kodi
 from commoncore.baseapi import EXPIRE_TIMES
-from scrapecore.scrapers.common import DirectScraper, QUALITY
+from scrapecore.scrapers.common import QUALITY
+from cooking import cookingScraper as DirectScraper
 
 class hgtvScraper(DirectScraper):
 	service='hgtv'
 	name='HGTV'
 	base_url = 'http://www.hgtv.com'
 	referrer = 'http://www.hgtv.com'
+	show_url = '/shows/full-episodes'
 	
 	def search_shows(self, args):
 		results = []
@@ -46,7 +47,7 @@ class hgtvScraper(DirectScraper):
 							"title": v['title'], 
 							"raw_url": url, 
 							"service": self.service, 
-							"host": self.service, 
+							"host": '', 
 							"size": 0, 
 							"extension": '',
 							"quality": QUALITY.HD720
@@ -57,10 +58,4 @@ class hgtvScraper(DirectScraper):
 		
 		results = self.verify_results(self.process_results, results)
 		return results
-	
-	def resolve_url(self, raw_url):
-		html = self.request(raw_url, append_base=False)
-		match = re.compile('<video src="(.+?)"',re.DOTALL).search(html)
-		if match:
-			return match.group(1)
-		return ''
+
